@@ -15,9 +15,28 @@ datasource db {
 }
 
 model User {
-  id    String @id @unique
-  email String @unique
-  firstName String
-  lastName String
+  id           String  @id @unique
+  email        String  @unique
+  firstName    String
+  lastName     String
   profileImage String?
+  home         Home[]
+}
+
+model Home {
+  id String @id @default(uuid())
+
+  title       String?
+  description String?
+  guests      String?
+  rooms       String?
+  bathrooms   String?
+  country     String?
+  photo       String?
+  price       String?
+
+  createdAt DateTime @default(now())
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
 }

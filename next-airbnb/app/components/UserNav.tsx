@@ -1,11 +1,7 @@
 import React, { FC } from "react";
 import { cn } from "@/lib/utils";
-import { DropdownMenu } from "@/components/ui";
-import {
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui";
+
 import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import {
@@ -14,6 +10,7 @@ import {
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import Link from "next/link";
 
 type Props = {
   className?: string;
@@ -39,9 +36,34 @@ export const UserNav: FC<Props> = async ({ className }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px] ">
           {user ? (
+            <>
             <DropdownMenuItem>
-              <LogoutLink className="w-full">Logout</LogoutLink>
-            </DropdownMenuItem>
+                <form className="w-full">
+                  <button type='submit' className="w-full text-start">
+                    Airbnb your home
+                  </button>
+                </form>
+              </DropdownMenuItem>
+            <DropdownMenuItem>
+                <Link href={"/my-home"} className="w-full">
+                  My Listings
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={"/favorites"} className="w-full">
+                  My Favorites
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={"/reservations"} className="w-full">
+                  My Reservations
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator  />
+              <DropdownMenuItem>
+                <LogoutLink className="w-full">Logout</LogoutLink>
+              </DropdownMenuItem>
+            </>
           ) : (
             <>
               <DropdownMenuItem>
