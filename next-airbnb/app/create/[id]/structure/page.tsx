@@ -1,8 +1,11 @@
-import { SelectCategory } from "@/app/components";
+// import { createCategoryPage } from "@/app/actions";
+import { createCategoryPage } from "@/app/actions";
+import { CreationSubmit, SelectCategory } from "@/app/components";
 import { Button } from "@/components/ui";
 import Link from "next/link";
 
-export default function StructurePage() {
+export default async function StructurePage({ params }: { params: Promise<{ id: string }> }) {
+  const homeId = (await params).id;
   return (
     <>
       <div className="w-3/5 mx-auto">
@@ -10,7 +13,8 @@ export default function StructurePage() {
           Which of these best describe your home?
         </h2>
       </div>
-      <form >
+      <form action={createCategoryPage} >
+        <input type="hidden" name="homeId" value={homeId}/>
         <SelectCategory />
 
         <div className="fixed w-full bottom-0 z-10 bg-white border-t h-24 ">
@@ -20,7 +24,7 @@ export default function StructurePage() {
                 Cancel
                 </Link>
                 </Button>
-            <Button size={"lg"}>Save</Button>
+            <CreationSubmit/>
 
           </div>
         </div>

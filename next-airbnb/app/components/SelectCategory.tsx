@@ -11,11 +11,12 @@ type Props = {
 };
 
 export const SelectCategory: FC<Props> = ({ className }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   return (
     <div
       className={cn("grid grid-cols-4 gap-8 mt-10 w-3/5 mx-auto mb-36", className)}
     >
+      <input type="hidden" name="categoryName" value={selectedCategory}/>
       {categoryItems.map((item) => (
         <div key={item.id} className="cursor-pointer">
           <Card
