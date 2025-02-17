@@ -6,14 +6,16 @@ import { Minus, Plus } from 'lucide-react';
 
 type Props = {
   className?: string;
+  name: string;
 };
 
-export const Counter: FC<Props> = ({ className }) => {
+export const Counter: FC<Props> = ({ className, name }) => {
     const [count, setCount] = useState(1);
     const increment = () => setCount(count + 1);
     const decrement = () => setCount(count > 1 ? count - 1 : 1);
   return (
     <div className={cn('flex items-center gap-x-4', className)}>
+      <input type='hidden' name={name} value={count}/>
         <Button onClick={decrement} variant='outline' size='icon' type='button'>
             <Minus className='h-4 w-4 text-primary'/>
         </Button>

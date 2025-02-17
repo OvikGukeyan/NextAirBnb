@@ -1,8 +1,5 @@
-// import { createCategoryPage } from "@/app/actions";
-import { createCategoryPage } from "@/app/actions";
-import { CreationSubmit, SelectCategory } from "@/app/components";
-import { Button } from "@/components/ui";
-import Link from "next/link";
+import { createCategory } from "@/app/actions";
+import { CreationBottomBar, SelectCategory } from "@/app/components";
 
 export default async function StructurePage({ params }: { params: Promise<{ id: string }> }) {
   const homeId = (await params).id;
@@ -13,21 +10,11 @@ export default async function StructurePage({ params }: { params: Promise<{ id: 
           Which of these best describe your home?
         </h2>
       </div>
-      <form action={createCategoryPage} >
+      <form action={createCategory} >
         <input type="hidden" name="homeId" value={homeId}/>
         <SelectCategory />
 
-        <div className="fixed w-full bottom-0 z-10 bg-white border-t h-24 ">
-          <div className="flex justify-between items-center mx-auto px-5 lg:px-10 h-full">
-            <Button size={"lg"} variant={"secondary"} asChild>
-                <Link href={'/'}>
-                Cancel
-                </Link>
-                </Button>
-            <CreationSubmit/>
-
-          </div>
-        </div>
+        <CreationBottomBar/>
       </form>
     </>
   );

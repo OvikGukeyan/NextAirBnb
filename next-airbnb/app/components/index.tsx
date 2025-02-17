@@ -4,3 +4,4 @@ export { MapFilterItems } from "./MapFilterItems";
 export { SelectCategory } from "./SelectCategory";
 export {CreationSubmit} from "./SubmitButtons";
 export { Counter } from "./Counter";
+export { CreationBottomBar } from "./CreationBottomBar";

@@ -1,7 +1,10 @@
-import { Counter } from "@/app/components";
+import { createDescription } from "@/app/actions";
+import { Counter, CreationBottomBar } from "@/app/components";
 import { Card, CardHeader, Input, Label, Textarea } from "@/components/ui";
 
-export default function DescriptionPage() {
+export default async function DescriptionPage({ params }: { params: Promise<{ id: string }> }) {
+  const homeId = (await params).id;
+
   return (
     <>
       <div className="w-3/5 mx-auto">
@@ -10,7 +13,8 @@ export default function DescriptionPage() {
         </h2>
       </div>
 
-      <form action="">
+      <form action={createDescription}>
+        <input type="hidden" name="homeId" value={homeId} />
         <div className="mx-auto w-3/5 mt-10 flex flex-col gap-y-5 mb-36">
           <div className="flex flex-col gap-y-2">
             <Label>Title</Label>
@@ -41,7 +45,7 @@ export default function DescriptionPage() {
           </div>
           <div className="flex flex-col gap-y-2">
             <Label>Image</Label>
-            <Input name="image" type="file" required />
+            <Input name="imageFile" type="file" required />
           </div>
 
           <Card>
@@ -51,11 +55,27 @@ export default function DescriptionPage() {
                     <h3 className="underline font-medium">Guests</h3>
                     <p className="text-muted-foreground text-sm">How many guests can you accommodate?</p>
                 </div>
-                <Counter/>
+                <Counter name='guests'/>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col">
+                    <h3 className="underline font-medium">Rooms</h3>
+                    <p className="text-muted-foreground text-sm">How many rooms do you have?</p>
+                </div>
+                <Counter name='rooms'/>
+              </div><div className="flex items-center justify-between">
+                <div className="flex flex-col">
+                    <h3 className="underline font-medium">Bathrooms</h3>
+                    <p className="text-muted-foreground text-sm">How many bathrooms do you have?</p>
+                </div>
+                <Counter name='bathrooms'/>
               </div>
             </CardHeader>
           </Card>
         </div>
+
+        <CreationBottomBar/>
       </form>
     </>
   );
