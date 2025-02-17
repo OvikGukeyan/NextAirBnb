@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { cn } from "@/lib/utils";
-import { CreationSubmit } from ".";
 import Link from "next/link";
 import { Button } from "@/components/ui";
+import { SubmitButtons } from "./SubmitButtons";
 
 type Props = {
   className?: string;
@@ -20,7 +20,7 @@ export const CreationBottomBar: FC<Props> = ({ className }) => {
         <Button size={"lg"} variant={"secondary"} asChild>
           <Link href={"/"}>Cancel</Link>
         </Button>
-        <CreationSubmit />
+        <SubmitButtons />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ export { Label } from "./label";
 export { Textarea } from "./textarea";
 export { Select } from "./select";
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "./card";
+export {Skeleton} from "./skeleton";
 export {
   DropdownMenu,
   DropdownMenuTrigger,
